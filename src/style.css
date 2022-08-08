@@ -121,44 +121,73 @@ nav ul li a {
     }
 }
 
-.DataImage{
-    width: 224px;
-    height: 340px;
-    border-radius: 50px;
-    object-fit: cover;
-    border-radius: 50px;
-    border-color: #109CEB;
-    border-style: solid;
-    border-width: 4px;   
-}
-
-.DataImage:hover {
-    width: 244px;
-    height: 360px;
-    border-color: #EB9010;
-    border-style: solid;
-    border-width: 4px;
-    object-fit: cover;
-}
-
-.organizedData {
+.sectionToClone {
     position: relative;
-    width: 224px;
-    height: 340px;
-    margin: 10px    
+    width: 250px;
+    height: 400px;
+    display: none;
 }
 
-.organizedData:hover {
-    width: 244px;
-    height: 360px;
-}
 .dataName {
     position: absolute;
-    top: 80%;
+    top: 70%;
     left: 50%;
     transform: translateX(-50%);
+    background-color: #109CEB;
+    width: 224px;
+    height: 30%;
+    border-radius: 0 0 50px 50px;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 80%;
+}
+
+.dataNameInside{
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #eb7a10;
+    width: 243px;
+    height: 30%;
+    border-radius: 0 0 50px 50px;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 80%;
+}
+
+.dataImageoutside {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 224px;
+    height: 315px;
+    border-radius: 50px;
+    object-fit: cover;
+    border-color: #109CEB;
+    border-style: solid;
+    border-width: 4px;
     z-index: 2;
-    
+}
+
+.dataImageover {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    width: 243px;
+    height: 341px;
+    border-color: #eb7a10;
+    border-radius: 50px;
+    border-style: solid;
+    border-width: 4px;
+    z-index: 2;
 }
 
 #root {
