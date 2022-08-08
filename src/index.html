@@ -1,42 +1,63 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Data Lovers</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
 
-    <header>
-      <h1> GHIBLI + </h1>
-      <button id="btnNav" class="btnNav"><img src=/menu.png></button>
-      <p class="subtitle">CATALOGUE</p>
+<head>
+  <meta charset="utf-8">
+  <title>Data Lovers</title>
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    let hoverFunction = (theDiv) => {
+      theDiv.children[1].classList.add("dataImageover");
+      theDiv.children[1].classList.remove("dataImageoutside");
+      theDiv.children[0].classList.add("dataNameInside");
+      theDiv.children[0].classList.remove("dataName");
+    }
+    let leaveFunction = (theDiv) => {
+      theDiv.children[1].classList.add("dataImageoutside");
+      theDiv.children[1].classList.remove("dataImageover");
+      theDiv.children[0].classList.add("dataName");
+      theDiv.children[0].classList.remove("dataNameInside");
+    }
+  </script>
+</head>
 
+<body>
 
-
+  <header>
+    <h1> GHIBLI + </h1>
+    <button id="btnNav" class="btnNav"><img src=/menu.png></button>
+    <p class="subtitle">CATALOGUE</p>
     <nav class="sidebar" id="textNav">
       <button id="btnClose" class="btnClose"> cerrar</button>
       <div class="text">CATEGORIES</div>
+      <ul>
+        <li> <a href="#"> MOVIES </a> </li>
+        <li> <a href="#"> CHARACTERS </a> </li>
+        <li> <a href="#"> VEHICLES </a> </li>
+        <li> <a href="#"> LOCATIONS </a> </li>
+  </header>
 
-        <ul>
-          <li> <a href="#"> MOVIES </a> </li>
-          <li> <a href="#"> CHARACTERS </a> </li>
-          <li> <a href="#"> VEHICLES </a> </li>
-          <li> <a href="#"> LOCATIONS </a> </li>
-        </ul>
 
+  <section id="toHide">
+    <div class="sectionToClone" id="cloneSection" onmouseover="hoverFunction(this)" onmouseleave="leaveFunction(this)">
+      <div class="dataName" id="data00">
+        Nombre random
       </div>
-    </header>
-    <div id="spaceHead"></div>
-    <div id="bigDivs"></div>
-    <div id="root">
-      <p id="data1"></p>
-      <p id="data2"></p>
-      <p id="data3"></p>
-      <p id="data4"></p>
-      <p id="data5"></p>
-      <p id="data6"></p>
+      <img src="https://static.wikia.nocookie.net/studio-ghibli/images/c/c1/Castle_in_the_Sky.jpg" class="dataImageoutside">
     </div>
-    <script src="main.js" type="module"></script>
-  </body>
+  </section>
+
+  <div id="spaceHead"></div>
+  <div id="bigDivs"></div>
+  <div id="root">
+    <p id="data1"></p>
+    <p id="data2"></p>
+    <p id="data3"></p>
+    <p id="data4"></p>
+    <p id="data5"></p>
+    <p id="data6"></p>
+  </div>
+  <script src="main.js" type="module"></script>
+</body>
+
 </html>
