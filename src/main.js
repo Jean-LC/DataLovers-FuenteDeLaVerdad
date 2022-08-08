@@ -3,6 +3,10 @@ import data from './data/ghibli/ghibli.js';
 const textNav = document.getElementById("textNav");
 const btnNav = document.getElementById("btnNav");
 const btnClose = document.getElementById("btnClose");
+const btnMovies = document.getElementById("btnMovies");
+const btnCharacters = document.getElementById("btnCharacters");
+const btnVehicles = document.getElementById("btnVehicles");
+const btnLocations = document.getElementById("btnLocations");
 
 btnNav.addEventListener("click", function () {
     textNav.style.display = "block";
@@ -24,18 +28,35 @@ let cloner = (filmData) => {
     secondDiv.style.display = 'block';
 }
 
+btnMovies.addEventListener("click", function() {
+
 for (let x = 0; x < data.films.length; x++) {
-    cloner(data.films[x]);
-    data.films[x].people.forEach(character => {
-        cloner(character);
-    });
-    data.films[x].vehicles.forEach(vehicle => {
-        cloner(vehicle);
-    });
+    cloner(data.films[x]);   
+}
+location.reload()
+})
+
+btnCharacters.addEventListener("click", function() {
+    for (let x = 0; x < data.films.length; x++) {
+    data.films[x].people.forEach(characters=> {
+        cloner(characters);
+    })}
+})
+
+btnVehicles.addEventListener("click", function() {
+    for (let x = 0; x < data.films.length; x++) {
+    data.films[x].vehicles.forEach(vehicles=> {
+        cloner(vehicles);
+    })}
+})
+
+btnLocations.addEventListener("click", function() {
+    for (let x = 0; x < data.films.length; x++) {
     data.films[x].locations.forEach(location => {
         cloner(location);
-    });
-}
+    })}
+})
+    
 
 const showData = document.getElementById("root");
 showData.addEventListener('click', function () { showData.style.display = 'none' })

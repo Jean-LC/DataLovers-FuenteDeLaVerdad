@@ -55,8 +55,11 @@ img {
 
 .sidebar {
     position: fixed;
+    display: grid;
+    grid-template-columns: 50px;
+    z-index: 5;
     width: 250px;
-    height: 350px;
+    height: 100%;
     top: 0;
     right: 0;
     background: #EB9010;
@@ -82,12 +85,12 @@ nav ul li {
     text-align: center;
 }
 
-nav ul li a {
-    color: #ffffff;
+.btnList {
     text-decoration: none;
-    font-size: 18px;
-    display: block;
-    width: 100%;
+    background-color: transparent;
+    color: #ffffff;
+    justify-content: center;
+    border-color: transparent;
     cursor: pointer;
 }
 
