@@ -81,9 +81,10 @@ nav ul {
 }
 
 nav ul li {
-    line-height: 60px;
+    line-height: 100px;
     text-align: center;
 }
+
 
 .btnList {
     text-decoration: none;
@@ -93,6 +94,12 @@ nav ul li {
     border-color: transparent;
     cursor: pointer;
 }
+
+.btnList:hover {
+    font-size: 20px;
+    font-weight: 600;
+}
+
 
 #bigDivs,
 #spaceHead {

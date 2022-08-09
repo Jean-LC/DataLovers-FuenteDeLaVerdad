@@ -7,6 +7,7 @@ const btnMovies = document.getElementById("btnMovies");
 const btnCharacters = document.getElementById("btnCharacters");
 const btnVehicles = document.getElementById("btnVehicles");
 const btnLocations = document.getElementById("btnLocations");
+const btnShowAll = document.getElementById("btnShowAll");
 
 btnNav.addEventListener("click", function () {
     textNav.style.display = "block";
@@ -28,35 +29,88 @@ let cloner = (filmData) => {
     secondDiv.style.display = 'block';
 }
 
-btnMovies.addEventListener("click", function() {
-
 for (let x = 0; x < data.films.length; x++) {
-    cloner(data.films[x]);   
-}
-location.reload()
+    cloner(data.films[x]);
+    data.films[x].people.forEach(character => {
+    cloner(character);
+    });
+    data.films[x].vehicles.forEach(vehicle => {
+    cloner(vehicle);
+    });
+    data.films[x].locations.forEach(location => {
+    cloner(location);
+    });
+    }
+
+
+btnMovies.addEventListener("click", function() {
+    const removeSection = document.getElementById("bigDivs")
+    removeSection.parentNode.removeChild(removeSection)
+
+    const newDiv = document.createElement("div");
+    newDiv.id="bigDivs"
+    document.body.appendChild(newDiv)
+
+    for (let x = 0; x < data.films.length; x++) {
+    cloner(data.films[x]);}
 })
+
 
 btnCharacters.addEventListener("click", function() {
-    for (let x = 0; x < data.films.length; x++) {
-    data.films[x].people.forEach(characters=> {
-        cloner(characters);
-    })}
-})
 
-btnVehicles.addEventListener("click", function() {
-    for (let x = 0; x < data.films.length; x++) {
-    data.films[x].vehicles.forEach(vehicles=> {
-        cloner(vehicles);
-    })}
-})
+    const removeSection = document.getElementById("bigDivs")
+    removeSection.parentNode.removeChild(removeSection)
 
-btnLocations.addEventListener("click", function() {
+    const newDiv = document.createElement("div");
+    newDiv.id="bigDivs"
+
+    document.body.appendChild(newDiv)
+    firstDiv.remove();
     for (let x = 0; x < data.films.length; x++) {
-    data.films[x].locations.forEach(location => {
-        cloner(location);
-    })}
-})
+        data.films[x].people.forEach(character => cloner(character))}
+    })
+
+btnVehicles.addEventListener("click", function () {
+        let allData = document.getElementsByClassName("sectionToClone");
+        while (allData.length > 0) allData[0].remove();
+        for (let x = 0; x < data.films.length; x++) {
+            data.films[x].vehicles.forEach(vehicles => {
+                cloner(vehicles);
+            })
+        }
+    })
     
+    btnLocations.addEventListener("click", function () {
+        let allData = document.getElementsByClassName("sectionToClone");
+        while (allData.length > 0) allData[0].remove();
+        for (let x = 0; x < data.films.length; x++) {
+            data.films[x].locations.forEach(location => {
+                cloner(location);
+            })
+        }
+    })
+    
+    btnShowAll.addEventListener("click", function(){
+        const removeSection = document.getElementById("bigDivs")
+        removeSection.parentNode.removeChild(removeSection)
+    
+        const newDiv = document.createElement("div");
+        newDiv.id="bigDivs"
+        document.body.appendChild(newDiv)
+        
+        for (let x = 0; x < data.films.length; x++) {
+            cloner(data.films[x]);
+            data.films[x].people.forEach(character => {
+            cloner(character);
+            });
+            data.films[x].vehicles.forEach(vehicle => {
+            cloner(vehicle);
+            });
+            data.films[x].locations.forEach(location => {
+            cloner(location);
+            });
+            }        
+    })
 
 const showData = document.getElementById("root");
 showData.addEventListener('click', function () { showData.style.display = 'none' })
