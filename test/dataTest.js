@@ -1,4 +1,6 @@
-export const tryArrayforOther = [
+export default  {
+    "studio": "Studio Ghibli Inc.",
+  "films": [
     {
         "name": "jojo",
         "type": "movie",
@@ -37,14 +39,5 @@ export const tryArrayforOther = [
             }
         ]
 
-    }]
+    }]}
 
-
-export const tryArrayforOrder = [
-    {
-        "name": "Zandra"
-    },
-    {
-        "name": "Abigail"
-    }
-]

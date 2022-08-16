@@ -4,7 +4,6 @@ import data from './data/ghibli/ghibli.js'
 let onScreenData = [];
 const textNav = document.getElementById("textNav");
 const btnNav = document.getElementById("btnNav");
-const btnClose = document.getElementById("btnClose");
 const btnMovies = document.getElementById("btnMovies");
 const btnCharacters = document.getElementById("btnCharacters");
 const btnVehicles = document.getElementById("btnVehicles");
@@ -15,11 +14,8 @@ const btnOrderZA = document.getElementById("btnOrderZA");
 
 // SIDE NAV
 btnNav.addEventListener("click", () => {
+    textNav.addEventListener("click", () => { textNav.style.display = "none"})
     textNav.style.display = "block";
-});
-
-btnClose.addEventListener("click", () => {
-    textNav.style.display = "none";
 });
 
 
