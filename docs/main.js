@@ -1,6 +1,8 @@
 import { showData, orderAZ, orderZA } from './data.js';
 import data from './data/ghibli/ghibli.js'
 
+let Holi;
+
 let onScreenData = [];
 const textNav = document.getElementById("textNav");
 const btnNav = document.getElementById("btnNav");
