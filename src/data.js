@@ -14,14 +14,30 @@ export const orderZA = (requiredArray) => {
   return requiredArray.sort((a, b) => a.name.localeCompare(b.name)).reverse();
 }
 
-export const statistics = (requiredArray) => {
+export const statistics = (films, requiredData) => {
   //find matches on all the keys. 
+//buscar sus keys
+let allTheData = [];
+films.forEach(item => allTheData.push(item[requiredData].filter((requiredItem) => requiredItem.name)))
+allTheData = allTheData.flat();
+
+console.log(Object.keys(allTheData[0]));
+//hacer todo por acad una de su data
+
+let allkeys = [];
+for (let i = 0; i < Object.keys(allTheData[0]).length; i++) {
+  allkeys.push(allTheData.sort((a, b) => a[Object.keys(allTheData[0])[i]].localeCompare(b[Object.keys(allTheData[0])[i]])));
+}
+
+console.log(allkeys);
+
+
+
+
   let sorted_arr = [];
-  requiredArray.forEach(item => {
-    if (item.eye_color) {
-      sorted_arr.push(item);
-    }
-  })
+
+  /*
+
   sorted_arr = sorted_arr.sort((a, b) => a.eye_color.localeCompare(b.eye_color));
   console.log('the array', sorted_arr);
 
@@ -34,6 +50,7 @@ export const statistics = (requiredArray) => {
     }
   }
   counts.totalCharacters = sorted_arr.length
-  return counts; 
+  return counts;
+  */
 
 }

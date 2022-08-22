@@ -155,8 +155,8 @@ btnStatistics.addEventListener('click', () => {
     eraseAll("sectionToClone");
     //Object.keys(statistics(onScreenData)).forEach(maker);
     //statistics(onScreenData).forEach(maker);    
-    maker(statistics(onScreenData), 'people', 'eye_color');
-    console.log('statistics', statistics(onScreenData));
+    //maker(statistics(data.films), 'people');
+    console.log('statistics', statistics(data.films, 'people'));
 })
 
 //data.films[1].people[1].eye_color
