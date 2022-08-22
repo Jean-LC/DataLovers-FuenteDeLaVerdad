@@ -25,6 +25,20 @@ header {
     padding: 10px;
 }
 
+#trivia {
+    display: none;
+}
+
+h3 {
+    padding: 2%;
+    margin: 3%;
+    margin-top: 5%;
+    background-color: #eb7a10;
+    font-weight: lighter;
+    letter-spacing: 5px;
+    font-size: 26px;
+}
+
 h1 {
     font-size: 60px;
     line-height: 60px;
@@ -83,11 +97,8 @@ nav ul {
     height: 100%;
     width: 100%;
     list-style: none;
-}
-
-nav ul li {
-    line-height: 100px;
     text-align: center;
+    line-height: 500%;
 }
 
 
@@ -194,6 +205,15 @@ nav ul li {
     border-width: 4px;
     z-index: 2;
 }
+
+.sectionToCloneRandom {
+    position: relative;
+    width: 250px;
+    height: 400px;
+    display: block;
+}
+
+
 
 #root, #root1 {
     display: none;

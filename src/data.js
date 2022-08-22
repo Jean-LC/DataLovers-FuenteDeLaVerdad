@@ -13,3 +13,7 @@ export const orderAZ = (requiredArray) => {
 export const orderZA = (requiredArray) => {
   return requiredArray.sort((a, b) => a.name.localeCompare(b.name)).reverse();
 }
+
+export const randomData = (item) => {
+  return item[Math.floor(Math.random() * item.length)]
+}
