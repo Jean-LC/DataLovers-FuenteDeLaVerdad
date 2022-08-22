@@ -1,7 +1,5 @@
-import { showData, orderAZ, orderZA } from './data.js';
+import { showData, orderAZ, orderZA, statistics } from './data.js';
 import data from './data/ghibli/ghibli.js'
-
-let Holi;
 
 let onScreenData = [];
 const textNav = document.getElementById("textNav");
@@ -13,10 +11,11 @@ const btnLocations = document.getElementById("btnLocations");
 const btnShowAll = document.getElementById("btnShowAll");
 const btnOrderAZ = document.getElementById("btnOrderAZ");
 const btnOrderZA = document.getElementById("btnOrderZA");
+const btnStatistics = document.getElementById('btnStatistics');
 
 // SIDE NAV
 btnNav.addEventListener("click", () => {
-    textNav.addEventListener("click", () => { textNav.style.display = "none"})
+    textNav.addEventListener("click", () => { textNav.style.display = "none" })
     textNav.style.display = "block";
 });
 
@@ -38,6 +37,26 @@ let cloner = (filmData) => {
     secondDiv.addEventListener('click', function () { dataWindow(secondDiv.id); });
     document.getElementById('bigDivs').appendChild(secondDiv);
     secondDiv.style.display = 'block';
+}
+
+//STATISTICS MAKER
+let maker = (recivedObject, whereToSearch, filter) => {
+    for (let i = 0; i < Object.keys(recivedObject).length - 1; i++) {
+        if (Object.values(recivedObject)[i] >= 2 && Object.keys(recivedObject)[i] != 'NA') {
+            let secondDiv = firstDiv.cloneNode(true);
+            let arrayNeeded = showData(data.films, whereToSearch);
+            arrayNeeded.forEach(element => {
+                if(element[filter] === Object.keys(recivedObject)[i]){
+                    secondDiv.children[1].src = element.img;
+                }
+            });
+            let statistics = (Object.values(recivedObject)[i] * 100)/  Object.values(recivedObject)[Object.keys(recivedObject).length-1];
+            console.log(Object.values(recivedObject)[Object.keys(recivedObject).length-1]);
+            secondDiv.children[0].innerText = 'There are ' + statistics + "% characters with " +  Object.keys(recivedObject)[i] + " [filter].";
+            document.getElementById('bigDivs').appendChild(secondDiv);
+            secondDiv.style.display = 'block';
+        }
+    }
 }
 
 //MOSTRAR DIV CON MÁS INFORMACIÓN
@@ -131,3 +150,13 @@ btnOrderZA.addEventListener("click", () => {
     onScreenData.forEach(cloner);
 })
 
+//BOTON PARA ESTADISTICAS
+btnStatistics.addEventListener('click', () => {
+    eraseAll("sectionToClone");
+    //Object.keys(statistics(onScreenData)).forEach(maker);
+    //statistics(onScreenData).forEach(maker);    
+    maker(statistics(onScreenData), 'people', 'eye_color');
+    console.log('statistics', statistics(onScreenData));
+})
+
+//data.films[1].people[1].eye_color
