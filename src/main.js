@@ -150,7 +150,7 @@ btnTrivia.addEventListener("click", () => {
     eraseAll("sectionToClone");
     document.getElementById("trivia").style.display = "block";
     triviaCloner(randomData(data.films), "What's the rt score?", "rt_score");
-    triviaCloner(randomData(showData(data.films, "people")), "What's the character's name?", "name");
+    triviaCloner(randomData(showData(data.films, "people")), "What's their age?", "age");
     triviaCloner(randomData(showData(data.films, "vehicles")), "What's the vehicle class?", "vehicle_class");
     triviaCloner(randomData(showData(data.films, "locations")), "Where's this place?", "name");
 } )
