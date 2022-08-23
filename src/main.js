@@ -1,4 +1,4 @@
-import { showData, orderAZ, orderZA, statistics } from './data.js';
+import { showData, orderAZ, orderZA, statistics, GetStatistics } from './data.js';
 import data from './data/ghibli/ghibli.js'
 
 let onScreenData = [];
@@ -11,7 +11,8 @@ const btnLocations = document.getElementById("btnLocations");
 const btnShowAll = document.getElementById("btnShowAll");
 const btnOrderAZ = document.getElementById("btnOrderAZ");
 const btnOrderZA = document.getElementById("btnOrderZA");
-const btnStatistics = document.getElementById('btnStatistics');
+const btnStatisticsPeople = document.getElementById('btnStatisticsPeople');
+const btnStatisticsLocations = document.getElementById('btnStatisticsLocations');
 
 // SIDE NAV
 btnNav.addEventListener("click", () => {
@@ -39,24 +40,32 @@ let cloner = (filmData) => {
     secondDiv.style.display = 'block';
 }
 
+let counter = -1;
+let counterInside = -1;
 //STATISTICS MAKER
-let maker = (recivedObject, whereToSearch, filter) => {
-    for (let i = 0; i < Object.keys(recivedObject).length - 1; i++) {
-        if (Object.values(recivedObject)[i] >= 2 && Object.keys(recivedObject)[i] != 'NA') {
-            let secondDiv = firstDiv.cloneNode(true);
-            let arrayNeeded = showData(data.films, whereToSearch);
-            arrayNeeded.forEach(element => {
-                if(element[filter] === Object.keys(recivedObject)[i]){
-                    secondDiv.children[1].src = element.img;
-                }
-            });
-            let statistics = (Object.values(recivedObject)[i] * 100)/  Object.values(recivedObject)[Object.keys(recivedObject).length-1];
-            console.log(Object.values(recivedObject)[Object.keys(recivedObject).length-1]);
-            secondDiv.children[0].innerText = 'There are ' + statistics + "% characters with " +  Object.keys(recivedObject)[i] + " [filter].";
-            document.getElementById('bigDivs').appendChild(secondDiv);
-            secondDiv.style.display = 'block';
-        }
-    }
+let maker = (recivedObject, searchFilter) => {
+    Object.values(recivedObject).filter(item => {
+        counter++;
+        console.log(Object.keys(recivedObject)[counter]);
+        Object.values(item).forEach(element => {
+            counterInside++;
+            console.log(Object.keys(item)[counterInside]);
+            if (element >= 2) {
+                let secondDiv = firstDiv.cloneNode(true);
+                let arrayNeeded = showData(data.films, searchFilter);
+                arrayNeeded.forEach(elementData => {
+                    if (elementData[Object.keys(recivedObject)[counter]] === Object.keys(item)[counterInside]) {
+                        secondDiv.children[1].src = elementData.img;
+                    }
+                });
+                let statistics = (element * 100) / showData(data.films, searchFilter).length;
+                secondDiv.children[0].innerText = statistics.toFixed(2) + '% ' + searchFilter + ': \n' + Object.keys(recivedObject)[counter] + ": " + Object.keys(item)[counterInside];
+                document.getElementById('bigDivs').appendChild(secondDiv);
+                secondDiv.style.display = 'block';
+            }
+        })
+        counterInside = -1;
+    })
 }
 
 //MOSTRAR DIV CON MÁS INFORMACIÓN
@@ -139,7 +148,6 @@ btnOrderAZ.addEventListener("click", () => {
 
     onScreenData = orderAZ(onScreenData);
     onScreenData.forEach(cloner);
-
 })
 
 //BOTÓN PARA ORDENAR Z-A
@@ -151,12 +159,12 @@ btnOrderZA.addEventListener("click", () => {
 })
 
 //BOTON PARA ESTADISTICAS
-btnStatistics.addEventListener('click', () => {
+btnStatisticsPeople.addEventListener('click', () => {
     eraseAll("sectionToClone");
-    //Object.keys(statistics(onScreenData)).forEach(maker);
-    //statistics(onScreenData).forEach(maker);    
-    //maker(statistics(data.films), 'people');
-    console.log('statistics', statistics(data.films, 'people'));
+    maker(statistics(data.films, 'people'), 'people');
 })
 
-//data.films[1].people[1].eye_color
+btnStatisticsLocations.addEventListener('click', () => {
+    eraseAll("sectionToClone");
+    maker(statistics(data.films, 'locations'), 'locations');
+})

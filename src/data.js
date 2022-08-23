@@ -16,41 +16,35 @@ export const orderZA = (requiredArray) => {
 
 export const statistics = (films, requiredData) => {
   //find matches on all the keys. 
-//buscar sus keys
-let allTheData = [];
-films.forEach(item => allTheData.push(item[requiredData].filter((requiredItem) => requiredItem.name)))
-allTheData = allTheData.flat();
+  //buscar sus keys
+  let allTheData = [];
+  films.forEach(item => allTheData.push(item[requiredData].filter((requiredItem) => requiredItem.name)))
+  allTheData = allTheData.flat();
 
-console.log(Object.keys(allTheData[0]));
-//hacer todo por acad una de su data
-
-let allkeys = [];
-for (let i = 0; i < Object.keys(allTheData[0]).length; i++) {
-  allkeys.push(allTheData.sort((a, b) => a[Object.keys(allTheData[0])[i]].localeCompare(b[Object.keys(allTheData[0])[i]])));
-}
-
-console.log(allkeys);
-
-
-
-
-  let sorted_arr = [];
-
-  /*
-
-  sorted_arr = sorted_arr.sort((a, b) => a.eye_color.localeCompare(b.eye_color));
-  console.log('the array', sorted_arr);
-
-  let counts = {}
-  for (let i = 0; i < sorted_arr.length; i++) {
-    if (counts[sorted_arr[i].eye_color]) {
-      counts[sorted_arr[i].eye_color] += 1
-    } else {
-      counts[sorted_arr[i].eye_color] = 1
+  let counts = {};
+  for (let i = 1; i < Object.keys(allTheData[0]).length; i++) {
+    let filter = Object.keys(allTheData[0])[i]
+    counts[filter] = {};
+    for (let i = 0; i < allTheData.length; i++) {
+      if (counts[filter][allTheData[i][filter]]) {
+        counts[filter][allTheData[i][filter]] += 1
+      } else {
+        counts[filter][allTheData[i][filter]] = 1
+      }
     }
   }
-  counts.totalCharacters = sorted_arr.length
   return counts;
-  */
+}
 
+export const GetStatistics = (statisticObj) => {
+  //{name: {…}, img: {…}, gender: {…}, age: {…}, eye_color: {…}, …}
+  let allTheData = [];
+for (let i = 0; i < Object.keys(statisticObj).length; i++) {
+  //console.log(statisticObj[Object.keys(statisticObj)[i]]);
+  allTheData.push(statisticObj[Object.keys(statisticObj)[i]]);
+}
+  
+  //let allTheData = [];
+  //statisticObj.forEach(item => console.log('item'))
+  return allTheData.flat();
 }
