@@ -1,4 +1,4 @@
-import { showData, orderAZ, orderZA, statistics, GetStatistics } from './data.js';
+import { showData, orderAZ, orderZA, statistics } from './data.js';
 import data from './data/ghibli/ghibli.js'
 
 let onScreenData = [];
