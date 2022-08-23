@@ -1,4 +1,4 @@
-import { showData, orderAZ, orderZA, randomData } from './data.js';
+import { showData, orderAZ, orderZA, statistics, randomData } from './data.js';
 import data from './data/ghibli/ghibli.js'
 
 let onScreenData = [];
@@ -12,10 +12,12 @@ const btnShowAll = document.getElementById("btnShowAll");
 const btnOrderAZ = document.getElementById("btnOrderAZ");
 const btnOrderZA = document.getElementById("btnOrderZA");
 const btnTrivia = document.getElementById("btnTrivia");
+const btnStatistics = document.getElementById('btnStatistics');
+//const btnStatisticsLocations = document.getElementById('btnStatisticsLocations');
 
 // SIDE NAV
 btnNav.addEventListener("click", () => {
-    textNav.addEventListener("click", () => { textNav.style.display = "none"})
+    textNav.addEventListener("click", () => { textNav.style.display = "none" })
     textNav.style.display = "block";
 });
 
@@ -40,7 +42,36 @@ let cloner = (filmData) => {
     secondDiv.style.display = 'block';
 }
 
-
+let counter = -1;
+let counterInside = -1;
+//STATISTICS MAKER
+let maker = (recivedObject, searchFilter) => {
+    counter = -1;
+    //Poner un nuevo titulo. Personajes... locaciones.
+    Object.values(recivedObject).filter(item => {
+        counter++;
+        console.log(Object.keys(recivedObject)[counter]);
+        Object.values(item).forEach(element => {
+            counterInside++;
+            console.log(Object.keys(item)[counterInside]);
+            if (element >= 2) {
+                let secondDiv = firstDiv.cloneNode(true);
+                let arrayNeeded = showData(data.films, searchFilter);
+                arrayNeeded.forEach(elementData => {
+                    if (elementData[Object.keys(recivedObject)[counter]] === Object.keys(item)[counterInside]) {
+                        secondDiv.children[1].src = elementData.img;
+                    }
+                });
+                let statistics = (element * 100) / showData(data.films, searchFilter).length;
+                secondDiv.children[0].innerText = statistics.toFixed(2) + '% ' + searchFilter + ': \n' + Object.keys(recivedObject)[counter] + ": " + Object.keys(item)[counterInside];
+                document.getElementById('bigDivs').appendChild(secondDiv);
+                secondDiv.style.display = 'block';
+            }
+        })
+        counterInside = -1;
+    })
+    
+}
 
 //MOSTRAR DIV CON MÁS INFORMACIÓN
 const showData2 = document.getElementById("root");
@@ -122,7 +153,6 @@ btnOrderAZ.addEventListener("click", () => {
 
     onScreenData = orderAZ(onScreenData);
     onScreenData.forEach(cloner);
-
 })
 
 //BOTÓN PARA ORDENAR Z-A
@@ -154,3 +184,11 @@ btnTrivia.addEventListener("click", () => {
     triviaCloner(randomData(showData(data.films, "vehicles")), "What's the vehicle class?", "vehicle_class");
     triviaCloner(randomData(showData(data.films, "locations")), "Where's this place?", "name");
 } )
+
+//BOTON PARA ESTADISTICAS
+btnStatistics.addEventListener('click', () => {
+    eraseAll("sectionToClone");
+    maker(statistics(data.films, 'people'), 'people');
+    maker(statistics(data.films, 'locations'), 'locations');
+})
+
