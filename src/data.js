@@ -17,7 +17,7 @@ export const orderZA = (requiredArray) => {
 
 //Función trivia (elige un elemento al azar)
 export const randomData = (item) => {
-  return item[Math.floor(Math.random() * item.length)]
+  return item[Math.floor(Math.random() * item.length)];
 }
 
 //Función estadísticas (genera estadísticas para cada valor)

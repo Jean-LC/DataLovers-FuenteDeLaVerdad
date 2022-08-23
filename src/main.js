@@ -50,10 +50,11 @@ let maker = (recivedObject, searchFilter) => {
     //Poner un nuevo titulo. Personajes... locaciones.
     Object.values(recivedObject).filter(item => {
         counter++;
-        console.log(Object.keys(recivedObject)[counter]);
+        counterInside = -1;
+        //console.log(Object.keys(recivedObject)[counter]);
         Object.values(item).forEach(element => {
             counterInside++;
-            console.log(Object.keys(item)[counterInside]);
+            //console.log(Object.keys(item)[counterInside]);
             if (element >= 2) {
                 let secondDiv = firstDiv.cloneNode(true);
                 let arrayNeeded = showData(data.films, searchFilter);
@@ -68,9 +69,7 @@ let maker = (recivedObject, searchFilter) => {
                 secondDiv.style.display = 'block';
             }
         })
-        counterInside = -1;
     })
-    
 }
 
 //MOSTRAR DIV CON MÁS INFORMACIÓN
@@ -170,7 +169,7 @@ let triviaCloner = (filmData, requiredQuestion, requiredAnswer) => {
     secondDiv.id = filmData.id;
     secondDiv.children[1].src = filmData.img;
     secondDiv.children[0].innerText = requiredQuestion;
-    secondDiv.addEventListener('click', function () { secondDiv.children[0].innerText = filmData[requiredAnswer];});
+    secondDiv.addEventListener('click', function () { secondDiv.children[0].innerText = filmData[requiredAnswer]; });
     document.getElementById('bigDivs').appendChild(secondDiv);
     secondDiv.style.display = 'block';
 }
@@ -183,7 +182,7 @@ btnTrivia.addEventListener("click", () => {
     triviaCloner(randomData(showData(data.films, "people")), "What's their age?", "age");
     triviaCloner(randomData(showData(data.films, "vehicles")), "What's the vehicle class?", "vehicle_class");
     triviaCloner(randomData(showData(data.films, "locations")), "Where's this place?", "name");
-} )
+})
 
 //BOTON PARA ESTADISTICAS
 btnStatistics.addEventListener('click', () => {
