@@ -36,15 +36,3 @@ export const statistics = (films, requiredData) => {
   return counts;
 }
 
-export const GetStatistics = (statisticObj) => {
-  //{name: {…}, img: {…}, gender: {…}, age: {…}, eye_color: {…}, …}
-  let allTheData = [];
-for (let i = 0; i < Object.keys(statisticObj).length; i++) {
-  //console.log(statisticObj[Object.keys(statisticObj)[i]]);
-  allTheData.push(statisticObj[Object.keys(statisticObj)[i]]);
-}
-  
-  //let allTheData = [];
-  //statisticObj.forEach(item => console.log('item'))
-  return allTheData.flat();
-}
