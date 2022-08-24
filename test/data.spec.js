@@ -1,6 +1,7 @@
-import { showData, orderAZ, orderZA } from '../src/data.js';
+import { showData, orderAZ, orderZA, statistics } from '../src/data.js';
 import tryArrayforOther from './dataTest';
 import tryArrayforOrder from './dataTestOrder';
+import tryObjectStatistics from './dataStatistics'
 
 
 // PROBAR LA FUNCIÓN DE FILTRADO
@@ -53,5 +54,15 @@ describe('order Z-A', () => {
   });
   it('does not return `order` from A-Z ', () => {
     expect(orderZA(tryArrayforOrder.films)).not.toBe([{ "name": "Abigail" }, { "name": "Zandra" }]);
+  });
+});
+
+//PROBAR objeto DE estadisticas
+describe('Statistics', () => {
+  it('is a function', () => {
+    expect(typeof statistics).toBe('function');
+  });
+  it('returns an object with statistics', () => {
+    expect(statistics(tryObjectStatistics.films, 'people')).toStrictEqual({"eye_color": {"green": 2}, 'hair': {'long': 2}});
   });
 });

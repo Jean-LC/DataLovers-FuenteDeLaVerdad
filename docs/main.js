@@ -1,4 +1,4 @@
-import { showData, orderAZ, orderZA, statistics, GetStatistics } from './data.js';
+import { showData, orderAZ, orderZA, statistics } from './data.js';
 import data from './data/ghibli/ghibli.js'
 
 let onScreenData = [];
@@ -11,8 +11,8 @@ const btnLocations = document.getElementById("btnLocations");
 const btnShowAll = document.getElementById("btnShowAll");
 const btnOrderAZ = document.getElementById("btnOrderAZ");
 const btnOrderZA = document.getElementById("btnOrderZA");
-const btnStatisticsPeople = document.getElementById('btnStatisticsPeople');
-const btnStatisticsLocations = document.getElementById('btnStatisticsLocations');
+const btnStatistics = document.getElementById('btnStatistics');
+//const btnStatisticsLocations = document.getElementById('btnStatisticsLocations');
 
 // SIDE NAV
 btnNav.addEventListener("click", () => {
@@ -44,6 +44,8 @@ let counter = -1;
 let counterInside = -1;
 //STATISTICS MAKER
 let maker = (recivedObject, searchFilter) => {
+    counter = -1;
+    //Poner un nuevo titulo. Personajes... locaciones.
     Object.values(recivedObject).filter(item => {
         counter++;
         console.log(Object.keys(recivedObject)[counter]);
@@ -66,6 +68,7 @@ let maker = (recivedObject, searchFilter) => {
         })
         counterInside = -1;
     })
+    
 }
 
 //MOSTRAR DIV CON MÁS INFORMACIÓN
@@ -159,12 +162,8 @@ btnOrderZA.addEventListener("click", () => {
 })
 
 //BOTON PARA ESTADISTICAS
-btnStatisticsPeople.addEventListener('click', () => {
+btnStatistics.addEventListener('click', () => {
     eraseAll("sectionToClone");
     maker(statistics(data.films, 'people'), 'people');
-})
-
-btnStatisticsLocations.addEventListener('click', () => {
-    eraseAll("sectionToClone");
     maker(statistics(data.films, 'locations'), 'locations');
 })
