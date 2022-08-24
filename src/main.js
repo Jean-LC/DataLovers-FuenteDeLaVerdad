@@ -191,3 +191,26 @@ btnStatistics.addEventListener('click', () => {
     maker(statistics(data.films, 'locations'), 'locations');
 })
 
+//filtrado 2
+
+const statisticsExtra = (data) => {
+
+    let keysCharacters = Object.keys(data[0]);
+    console.log(keysCharacters)
+
+    let newData = data.map((data) => data.gender)
+    let counts = {}
+    newData.forEach((x) => { counts[x] = (counts[x] || 0) + 1; });
+    console.log(Object.keys(counts));
+    console.log(counts)
+    console.log(Object.values(counts).map((item) => (item * 100) / 172));
+   
+
+
+    // return Object.values(counts).map((item) => (item * 100)/172)
+
+}
+
+
+
+console.log(statisticsExtra(showData(data.films, "people")))
