@@ -1,4 +1,4 @@
-import { showData, orderAZ, orderZA, statistics, randomData } from './data.js';
+import { showData, orderAZ, orderZA, statistics } from './data.js';
 import data from './data/ghibli/ghibli.js'
 
 let onScreenData = [];
@@ -11,7 +11,6 @@ const btnLocations = document.getElementById("btnLocations");
 const btnShowAll = document.getElementById("btnShowAll");
 const btnOrderAZ = document.getElementById("btnOrderAZ");
 const btnOrderZA = document.getElementById("btnOrderZA");
-const btnTrivia = document.getElementById("btnTrivia");
 const btnStatistics = document.getElementById('btnStatistics');
 //const btnStatisticsLocations = document.getElementById('btnStatisticsLocations');
 
@@ -24,7 +23,6 @@ btnNav.addEventListener("click", () => {
 
 //FUNCIÓN PARA BORRAR EL CONTENIDO
 const eraseAll = (sectionToErase) => {
-    document.getElementById("trivia").style.display = "none";
     let allData = document.getElementsByClassName(sectionToErase);
     while (allData.length > 0) allData[0].remove();
 }
@@ -162,27 +160,6 @@ btnOrderZA.addEventListener("click", () => {
     onScreenData.forEach(cloner);
 })
 
-
-//CLONER PARA TRIVIA
-let triviaCloner = (filmData, requiredQuestion, requiredAnswer) => {
-    let secondDiv = firstDiv.cloneNode(true);
-    secondDiv.id = filmData.id;
-    secondDiv.children[1].src = filmData.img;
-    secondDiv.children[0].innerText = requiredQuestion;
-    secondDiv.addEventListener('click', function () { secondDiv.children[0].innerText = filmData[requiredAnswer]; });
-    document.getElementById('bigDivs').appendChild(secondDiv);
-    secondDiv.style.display = 'block';
-}
-
-//BOTÓN TRIVIA
-btnTrivia.addEventListener("click", () => {
-    eraseAll("sectionToClone");
-    document.getElementById("trivia").style.display = "block";
-    triviaCloner(randomData(data.films), "What's the rt score?", "rt_score");
-    triviaCloner(randomData(showData(data.films, "people")), "What's their age?", "age");
-    triviaCloner(randomData(showData(data.films, "vehicles")), "What's the vehicle class?", "vehicle_class");
-    triviaCloner(randomData(showData(data.films, "locations")), "Where's this place?", "name");
-})
 
 //BOTON PARA ESTADISTICAS
 btnStatistics.addEventListener('click', () => {

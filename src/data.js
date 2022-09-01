@@ -15,11 +15,6 @@ export const orderZA = (requiredArray) => {
   return requiredArray.sort((a, b) => a.name.localeCompare(b.name)).reverse();
 }
 
-//Función trivia (elige un elemento al azar)
-export const randomData = (item) => {
-  return item[Math.floor(Math.random() * item.length)];
-}
-
 //Función estadísticas (genera estadísticas para cada valor)
 export const statistics = (films, requiredData) => {
   //find matches on all the keys. 
@@ -42,5 +37,6 @@ export const statistics = (films, requiredData) => {
     }
   }
   return counts;
+  
 }
 
